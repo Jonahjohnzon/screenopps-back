@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
 const yup = require('yup')
-const mongoosedb = require('../lib/db')
 const user = require('../models/user')
 
 
@@ -15,7 +14,6 @@ const registrationSchema = yup.object().shape({
 router.post('/', async (req, res) => {
     try{
       const dataReq = await req.body
-        await mongoosedb()
         await registrationSchema.validate(dataReq);
         const pass = dataReq.password;
         const salt =  await bcrypt.genSalt(10);

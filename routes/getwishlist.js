@@ -1,12 +1,10 @@
 const router = require('express').Router()
-const mongoosedb = require('../lib/db')
 const user = require('../models/user')
 const requireAuth = require('../middleware/requireAuth')
 
 
 router.get('/',requireAuth, async (req, res) => {
     try {
-      await mongoosedb();
   
       const userId = req.userId;
       const url = new URL(req.url);

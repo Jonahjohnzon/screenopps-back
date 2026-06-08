@@ -2,7 +2,6 @@ const router = require('express').Router()
 const JWT = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const yup = require('yup')
-const mongoosedb = require('../lib/db')
 const user = require('../models/user')
 
 const loginSchema = yup.object().shape({
@@ -12,7 +11,6 @@ const loginSchema = yup.object().shape({
 
 router.post('/', async (req, res) => {
   try {
-    await mongoosedb()
     await loginSchema.validate(req.body)
 
     const emailinfo = req.body.email.toUpperCase()

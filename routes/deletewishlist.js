@@ -1,12 +1,10 @@
 
 const router = require('express').Router()
-const mongoosedb = require('../lib/db')
 const user = require('../models/user')
 const requireAuth = require('../middleware/Requireauth')
 
 router.delete('/',requireAuth, async (req, res) => {
   try {
-    await mongoosedb();
     const body = await req.body
     const userId = req.userId;
     const itemId =  body.item_id;
