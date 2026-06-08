@@ -9,7 +9,7 @@ require('dotenv').config()
 const app = express()
 app.use(cookieParser())
 app.use(cors({
-  origin: "http://localhost:3000", // Next.js frontend
+  origin: "https://screenopps-back.vercel.app/", // Next.js frontend
   credentials: true
 }));
 
@@ -30,6 +30,6 @@ app.use('/api/pushhistory',  require('./routes/pushhistory'))
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }))
 
-const PORT = process.env.PORT || 4000
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
-// module.exports = app;
+// const PORT = process.env.PORT || 4000
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+module.exports = app;
