@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
       return res.json({ success: false, message: 'Password Wrong' })
     }
 
-    const token = JWT.sign({ id: info._id }, process.env.DB_JWTS)
+    const token = JWT.sign({ id: info._id }, "JKDGKFJIJKHKJEHIJFHJHKJKJHJKHKJgkjgwkuyeuib3jkbfbdkjfjk")
     
     res.cookie('accessToken', token, {
       httpOnly: true,
