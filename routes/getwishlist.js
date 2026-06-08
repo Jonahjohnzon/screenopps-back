@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const user = require('../models/user')
-const requireAuth = require('../middleware/requireAuth')
+const requireAuth = require('../middleware/Requireauth')
 
 
 router.get('/',requireAuth, async (req, res) => {
