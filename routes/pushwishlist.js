@@ -4,9 +4,9 @@ const requireAuth = require('../middleware/Requireauth')
 
 router.put('/',requireAuth, async (req, res) => {
   try {
-
+    
     const userId = req.userId;
-    const newItem = await req.json();
+    const newItem = await req.body;
 
     const userData = await user.findById(userId);
     if (!userData) {

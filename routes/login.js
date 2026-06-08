@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
     }
 
     const token = JWT.sign({ id: info._id }, process.env.DB_JWTS)
-
+    
     res.cookie('accessToken', token, {
       httpOnly: true,
       maxAge: 60 * 30 * 24 * 60 * 60 * 1000, // milliseconds in Express

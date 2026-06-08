@@ -2,9 +2,9 @@ const router = require('express').Router()
 const user = require('../models/user')
 const requireAuth = require('../middleware/Requireauth')
 
-router.get('/',requireAuth, async (req, res) => {
+router.put('/',requireAuth, async (req, res) => {
         try {
-            
+          
             const userId = req.userId;
             const newItem = await req.body;
             
@@ -21,7 +21,7 @@ router.get('/',requireAuth, async (req, res) => {
             }
     
             await userData.save();
-    
+            
             return res.json({ success: true }, { status: 200 });
         } catch (err) {
             console.error(err);

@@ -1,4 +1,5 @@
 const express = require('express')
+require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const mongoosedb = require('./lib/db')
@@ -6,13 +7,14 @@ require('dotenv').config()
 
 
 const app = express()
-
-app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
-  credentials: true,
-}))
-app.use(express.json())
 app.use(cookieParser())
+app.use(cors({
+  origin: "http://localhost:3000", // Next.js frontend
+  credentials: true
+}));
+
+mongoosedb()
+app.use(express.json())
 
 // Routes
 app.use('/api/login',        require('./routes/login'))
@@ -28,6 +30,6 @@ app.use('/api/pushhistory',  require('./routes/pushhistory'))
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }))
 
-// const PORT = process.env.PORT || 4000
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
-module.exports = app;
+const PORT = process.env.PORT || 4000
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+// module.exports = app;

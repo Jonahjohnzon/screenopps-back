@@ -6,8 +6,7 @@ router.get('/',requireAuth, async (req, res) => {
     try {
   
       const userId = req.userId;
-      const url = new URL(req.url);
-      const page = parseInt(url.searchParams.get('page'), 10) || 1 // Default to page 1 if not provided
+      const page = parseInt(req.query.url, 10) || 1; // Default to page 1 if not provided
   
       if (!userId) {
         return res.json(
